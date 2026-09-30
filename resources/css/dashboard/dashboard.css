@@ -1,0 +1,481 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "datatables.net-bs5";
+@import "./sales.css";
+
+:root {
+    --dashboard-border: #e5e7eb;
+    --dashboard-muted: #6b7280;
+    --dashboard-text: #111827;
+    --dashboard-primary: #2563eb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: #1f2937;
+    background: #f4f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    min-width: 240px;
+    background: #ffffff;
+    border-right: 1px solid var(--dashboard-border);
+    transition:
+        width 0.25s ease,
+        min-width 0.25s ease;
+}
+
+.sidebar-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--dashboard-border);
+}
+
+.brand {
+    color: var(--dashboard-text);
+    font-size: 21px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--dashboard-muted);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.sidebar-toggle:hover,
+.nav-item:hover,
+.logout-button:hover {
+    background: #f3f4f6;
+    color: var(--dashboard-text);
+}
+
+.sidebar-toggle svg,
+.nav-icon svg,
+.user-profile-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke-width: 1.8;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 10px;
+}
+
+.sidebar .nav-item,
+.sidebar .logout-button {
+    width: 100%;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 11px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #4b5563;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.nav-item + .nav-item {
+    margin-top: 5px;
+}
+
+.nav-item.active {
+    background: #eff6ff;
+    color: var(--dashboard-primary);
+    font-weight: 600;
+}
+
+.nav-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    min-width: 20px;
+}
+
+.sidebar-footer {
+    padding: 10px;
+    border-top: 1px solid var(--dashboard-border);
+}
+
+.logout-button {
+    margin-top: 5px;
+}
+
+.sidebar.collapsed {
+    width: 68px;
+    min-width: 68px;
+}
+
+.sidebar.collapsed .brand,
+.sidebar.collapsed .nav-label {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-header,
+.sidebar.collapsed .nav-item,
+.sidebar.collapsed .logout-button {
+    justify-content: center;
+    padding: 0;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    position: static;
+    margin: 0 auto;
+    transform: none;
+}
+
+.main-area {
+    flex: 1;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 28px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--dashboard-border);
+}
+
+.breadcrumb,
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumb,
+.welcome-text {
+    color: var(--dashboard-muted);
+    font-size: 14px;
+}
+
+.page-content {
+    padding: 30px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--dashboard-text);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 6px 0 0;
+    color: var(--dashboard-muted);
+    font-size: 14px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--dashboard-primary);
+    color: #ffffff;
+}
+
+.secondary-button {
+    background: #e5e7eb;
+    color: var(--dashboard-text);
+}
+
+.product-card,
+.welcome-card,
+.profile-card {
+    background: #ffffff;
+    border: 1px solid var(--dashboard-border);
+    border-radius: 8px;
+}
+
+.product-card {
+    overflow: hidden;
+}
+
+.welcome-card,
+.profile-card {
+    padding: 28px;
+}
+
+.profile-card {
+    max-width: 800px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--dashboard-border);
+}
+
+.profile-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: var(--dashboard-primary);
+}
+
+.profile-header h2,
+.welcome-card h2 {
+    margin: 0 0 8px;
+    color: var(--dashboard-text);
+    font-size: 20px;
+}
+
+.profile-header p,
+.welcome-card p {
+    margin: 0;
+    color: var(--dashboard-muted);
+    font-size: 14px;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 24px;
+}
+
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.profile-label {
+    color: var(--dashboard-muted);
+    font-size: 13px;
+}
+
+.profile-value {
+    color: var(--dashboard-text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.table-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.table-action-button:hover {
+    background: #f3f4f6;
+}
+
+.table-action-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--dashboard-border);
+    text-align: left;
+}
+
+.table-loading,
+.table-empty {
+    padding: 32px !important;
+    text-align: center !important;
+}
+
+.modal:not(.fade) {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modal:not(.fade).show {
+    display: flex;
+}
+
+.modal:not(.fade) .modal-content {
+    width: min(500px, calc(100% - 32px));
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.modal-header h2,
+.modal-header p {
+    margin: 0;
+}
+
+.modal-header p {
+    margin-top: 6px;
+}
+
+.modal-close {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.form-group input.input-error {
+    border-color: #dc2626;
+}
+
+.field-error {
+    display: block;
+    margin-top: 5px;
+    color: #dc2626;
+    font-size: 13px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 68px;
+        min-width: 68px;
+    }
+
+    .sidebar .brand,
+    .sidebar .nav-label {
+        display: none;
+    }
+
+    .sidebar .sidebar-header,
+    .sidebar .nav-item,
+    .sidebar .logout-button {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .sidebar .sidebar-toggle {
+        position: static;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .page-content {
+        padding: 20px;
+    }
+}
