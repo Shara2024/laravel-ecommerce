@@ -42,16 +42,6 @@ Before running the project, make sure the following are installed:
 - MySQL
 - Git
 
-You can verify the installed versions:
-
-```bash
-php -v
-composer -V
-node -v
-npm -v
-mysql --version
-git --version
-```
 
 ## Installation
 
@@ -87,73 +77,7 @@ Install the required JavaScript packages:
 npm install
 ```
 
-### 4. Create the Environment File
-
-Create a `.env` file from the provided `.env.example` file.
-
-#### Windows PowerShell
-
-```powershell
-Copy-Item .env.example .env
-```
-
-#### macOS / Linux
-
-```bash
-cp .env.example .env
-```
-
-You can also manually copy `.env.example` and rename it to:
-
-```text
-.env
-```
-
-### 5. Generate the Application Key
-
-Generate the Laravel application encryption key:
-
-```bash
-php artisan key:generate
-```
-
-### 6. Create the Database
-
-Create a MySQL database for the application.
-
-For example:
-
-```sql
-CREATE DATABASE laravel_ecommerce;
-```
-
-You can create the database using MySQL Workbench, phpMyAdmin, or the MySQL command line.
-
-### 7. Configure the Database
-
-Open the `.env` file and update the database configuration according to your local environment.
-
-Example:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel_ecommerce
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-If your MySQL server uses a password, enter it in `DB_PASSWORD`.
-
-For example:
-
-```env
-DB_USERNAME=root
-DB_PASSWORD=your_password
-```
-
-### 8. Run Database Migrations
+### 4. Run Database Migrations
 
 Create the required database tables by running:
 
@@ -181,7 +105,7 @@ For a production build:
 npm run build
 ```
 
-### 10. Start the Laravel Development Server
+### 5. Start the Laravel Development Server
 
 Open another terminal in the project directory and run:
 
@@ -219,48 +143,6 @@ Then open:
 http://127.0.0.1:8000
 ```
 
-## Application Modules
-
-### Dashboard
-
-The dashboard provides an overview of the application and quick access to the main modules.
-
-### Products
-
-The product management module allows users to:
-
-- Add products
-- Edit products
-- Delete products
-- View products
-- Manage stock
-- Search products
-
-### Customers
-
-The customer management module allows users to:
-
-- Add customers
-- Edit customers
-- Delete customers
-- View customer information
-- Search customers
-
-### Sales
-
-The sales module allows users to:
-
-- Create a new sale
-- Select a customer
-- Search for products
-- Add multiple products to a sale
-- Set product quantities
-- Calculate the sale total
-- Complete the sale
-- Update product stock
-- View completed sales
-- View sale details
-
 ## Database
 
 The application uses **MySQL** for data storage.
@@ -278,149 +160,6 @@ To run migrations together with seeders:
 ```bash
 php artisan migrate --seed
 ```
-
-### Resetting the Database
-
-For development purposes, the database can be completely recreated using:
-
-```bash
-php artisan migrate:fresh
-```
-
-To recreate the database and run seeders:
-
-```bash
-php artisan migrate:fresh --seed
-```
-
-> **Warning:** `migrate:fresh` will delete all existing database tables and data.
-
-## Environment Configuration
-
-The `.env` file contains environment-specific configuration such as database credentials.
-
-Example:
-
-```env
-APP_NAME="Laravel E-Commerce"
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=http://127.0.0.1:8000
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel_ecommerce
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-The `.env` file should **never be committed to GitHub**.
-
-The repository includes `.env.example` as a template for local configuration.
-
-## Troubleshooting
-
-### Composer Installation Problems
-
-If dependencies are not installed correctly, try:
-
-```bash
-composer install
-```
-
-If you need to update dependencies:
-
-```bash
-composer update
-```
-
-### Application Key Error
-
-If Laravel reports that the application key is missing:
-
-```bash
-php artisan key:generate
-```
-
-### Database Connection Error
-
-Check your `.env` database configuration:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel_ecommerce
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-Then clear the Laravel configuration cache:
-
-```bash
-php artisan config:clear
-```
-
-You can also clear all Laravel caches:
-
-```bash
-php artisan optimize:clear
-```
-
-### Migration Error
-
-If you are working with a fresh development database, you can recreate the database tables:
-
-```bash
-php artisan migrate:fresh
-```
-
-> **Warning:** This will remove existing database data.
-
-### Vite Not Loading
-
-Make sure the frontend dependencies are installed:
-
-```bash
-npm install
-```
-
-Then start the Vite development server:
-
-```bash
-npm run dev
-```
-
-### Permission / Storage Issues
-
-If Laravel has problems accessing storage or cache directories, run:
-
-```bash
-php artisan storage:link
-```
-
-## Security
-
-Sensitive configuration such as database credentials and application keys should be stored in the `.env` file.
-
-The `.env` file should not be committed to the repository.
-
-Make sure the following files remain private:
-
-```text
-.env
-```
-
-The repository provides:
-
-```text
-.env.example
-```
-
-as a template for the required environment configuration.
-
 ## Future Improvements
 
 Possible future improvements include:
