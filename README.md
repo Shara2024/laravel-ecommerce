@@ -1,66 +1,464 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel E-Commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A simple e-commerce management application built with Laravel. The application allows users to manage products, customers, inventory, and sales through a clean web-based interface.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- User registration and authentication
+- User login and logout
+- Dashboard
+- Product management
+- Customer management
+- Inventory management
+- Create and manage sales
+- Add multiple products to a sale
+- Calculate sale totals
+- Automatically update product stock after a sale
+- View completed sales
+- View individual sale details
+- Search and manage products and customers
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies Used
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel** - PHP web application framework
+- **PHP** - Backend programming language
+- **MySQL** - Relational database
+- **Blade** - Laravel templating engine
+- **JavaScript** - Frontend interactions
+- **Bootstrap** - UI styling and components
+- **Vite** - Frontend asset bundling
+- **Composer** - PHP dependency management
+- **npm** - JavaScript dependency management
+- **Git & GitHub** - Version control
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Before running the project, make sure the following are installed:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP 8.1 or higher
+- Composer
+- Node.js
+- npm
+- MySQL
+- Git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+You can verify the installed versions:
 
-## Laravel Sponsors
+```bash
+php -v
+composer -V
+node -v
+npm -v
+mysql --version
+git --version
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
+Follow the steps below to install and run the project locally.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 1. Clone the Repository
 
-## Contributing
+Clone the repository from GitHub:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/Shara2024/laravel-ecommerce.git
+```
 
-## Code of Conduct
+Navigate into the project directory:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cd laravel-ecommerce
+```
 
-## Security Vulnerabilities
+### 2. Install PHP Dependencies
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Install the required Laravel dependencies using Composer:
+
+```bash
+composer install
+```
+
+### 3. Install Frontend Dependencies
+
+Install the required JavaScript packages:
+
+```bash
+npm install
+```
+
+### 4. Create the Environment File
+
+Create a `.env` file from the provided `.env.example` file.
+
+#### Windows PowerShell
+
+```powershell
+Copy-Item .env.example .env
+```
+
+#### macOS / Linux
+
+```bash
+cp .env.example .env
+```
+
+You can also manually copy `.env.example` and rename it to:
+
+```text
+.env
+```
+
+### 5. Generate the Application Key
+
+Generate the Laravel application encryption key:
+
+```bash
+php artisan key:generate
+```
+
+### 6. Create the Database
+
+Create a MySQL database for the application.
+
+For example:
+
+```sql
+CREATE DATABASE laravel_ecommerce;
+```
+
+You can create the database using MySQL Workbench, phpMyAdmin, or the MySQL command line.
+
+### 7. Configure the Database
+
+Open the `.env` file and update the database configuration according to your local environment.
+
+Example:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_ecommerce
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+If your MySQL server uses a password, enter it in `DB_PASSWORD`.
+
+For example:
+
+```env
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+### 8. Run Database Migrations
+
+Create the required database tables by running:
+
+```bash
+php artisan migrate
+```
+
+If the project contains database seeders, you can also run:
+
+```bash
+php artisan migrate --seed
+```
+
+### 9. Build Frontend Assets
+
+For development, start the Vite development server:
+
+```bash
+npm run dev
+```
+
+For a production build:
+
+```bash
+npm run build
+```
+
+### 10. Start the Laravel Development Server
+
+Open another terminal in the project directory and run:
+
+```bash
+php artisan serve
+```
+
+The application will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Open the URL in your web browser.
+
+## Running the Application
+
+During development, run the following commands in separate terminals.
+
+### Terminal 1 - Laravel Server
+
+```bash
+php artisan serve
+```
+
+### Terminal 2 - Vite Development Server
+
+```bash
+npm run dev
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Application Modules
+
+### Dashboard
+
+The dashboard provides an overview of the application and quick access to the main modules.
+
+### Products
+
+The product management module allows users to:
+
+- Add products
+- Edit products
+- Delete products
+- View products
+- Manage stock
+- Search products
+
+### Customers
+
+The customer management module allows users to:
+
+- Add customers
+- Edit customers
+- Delete customers
+- View customer information
+- Search customers
+
+### Sales
+
+The sales module allows users to:
+
+- Create a new sale
+- Select a customer
+- Search for products
+- Add multiple products to a sale
+- Set product quantities
+- Calculate the sale total
+- Complete the sale
+- Update product stock
+- View completed sales
+- View sale details
+
+## Database
+
+The application uses **MySQL** for data storage.
+
+Laravel migrations are used to create and manage the database structure.
+
+Run the migrations with:
+
+```bash
+php artisan migrate
+```
+
+To run migrations together with seeders:
+
+```bash
+php artisan migrate --seed
+```
+
+### Resetting the Database
+
+For development purposes, the database can be completely recreated using:
+
+```bash
+php artisan migrate:fresh
+```
+
+To recreate the database and run seeders:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> **Warning:** `migrate:fresh` will delete all existing database tables and data.
+
+## Environment Configuration
+
+The `.env` file contains environment-specific configuration such as database credentials.
+
+Example:
+
+```env
+APP_NAME="Laravel E-Commerce"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_ecommerce
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+The `.env` file should **never be committed to GitHub**.
+
+The repository includes `.env.example` as a template for local configuration.
+
+## Troubleshooting
+
+### Composer Installation Problems
+
+If dependencies are not installed correctly, try:
+
+```bash
+composer install
+```
+
+If you need to update dependencies:
+
+```bash
+composer update
+```
+
+### Application Key Error
+
+If Laravel reports that the application key is missing:
+
+```bash
+php artisan key:generate
+```
+
+### Database Connection Error
+
+Check your `.env` database configuration:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_ecommerce
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Then clear the Laravel configuration cache:
+
+```bash
+php artisan config:clear
+```
+
+You can also clear all Laravel caches:
+
+```bash
+php artisan optimize:clear
+```
+
+### Migration Error
+
+If you are working with a fresh development database, you can recreate the database tables:
+
+```bash
+php artisan migrate:fresh
+```
+
+> **Warning:** This will remove existing database data.
+
+### Vite Not Loading
+
+Make sure the frontend dependencies are installed:
+
+```bash
+npm install
+```
+
+Then start the Vite development server:
+
+```bash
+npm run dev
+```
+
+### Permission / Storage Issues
+
+If Laravel has problems accessing storage or cache directories, run:
+
+```bash
+php artisan storage:link
+```
+
+## Security
+
+Sensitive configuration such as database credentials and application keys should be stored in the `.env` file.
+
+The `.env` file should not be committed to the repository.
+
+Make sure the following files remain private:
+
+```text
+.env
+```
+
+The repository provides:
+
+```text
+.env.example
+```
+
+as a template for the required environment configuration.
+
+## Future Improvements
+
+Possible future improvements include:
+
+- Product categories
+- Product images
+- Advanced inventory management
+- Sales reports
+- Dashboard analytics
+- Invoice generation
+- Payment integration
+- Order management
+- Product filtering and advanced search
+- Role-based access control
+- REST API
+- Improved reporting and analytics
+
+## Learning Objectives
+
+This project was developed to practice and demonstrate:
+
+- Laravel application development
+- MVC architecture
+- CRUD operations
+- Laravel routing
+- Controllers and models
+- Eloquent ORM
+- Database migrations
+- MySQL database management
+- Authentication and sessions
+- Form handling and validation
+- Frontend and backend integration
+- JavaScript interactions
+- Vite asset management
+- Git and GitHub workflow
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is developed for educational and portfolio purposes.
+
+Laravel is open-source software licensed under the MIT license.
